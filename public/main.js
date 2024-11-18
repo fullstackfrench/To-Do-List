@@ -1,68 +1,74 @@
-var thumbUp = document.getElementsByClassName("fa-thumbs-up");
-var thumbDown = document.getElementsByClassName("fa-thumbs-down");
 var trash = document.getElementsByClassName("fa-trash-o");
+var edit = document.getElementsByClassName("fa-pen-to-square")
+var submit = document.getElementsByClassName("submitEdit")
+var checkBox = document.getElementsByClassName("checkBox")
+Array.from(edit).forEach(function(editButton) {
 
-Array.from(thumbUp).forEach(function(element) {
-      element.addEventListener('click', function(){
-        const name = this.parentNode.parentNode.childNodes[1].innerText
-        const msg = this.parentNode.parentNode.childNodes[3].innerText
-        const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-        fetch('messages', {
-          method: 'put',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            'name': name,
-            'msg': msg,
-            'thumbUp':thumbUp
-          })
-        })
-        .then(response => {
-          if (response.ok) return response.json()
-        })
-        .then(data => {
-          console.log(data)
-          window.location.reload(true)
-        })
-      });
-});
+  editButton.addEventListener('click', function(){
+  
+  Array.from(editButton.closest('form').querySelectorAll('.editItem')).forEach(element => element.classList.toggle('showInput'))
+  Array.from(editButton.closest('form').querySelectorAll('.submitEdit')).forEach(element => element.classList.toggle('showInput'))
+  
+})
+})
 
-Array.from(thumbDown).forEach(function(element) {
-  element.addEventListener('click', function(){
-    const name = this.parentNode.parentNode.childNodes[1].innerText
-    const msg = this.parentNode.parentNode.childNodes[3].innerText
-    const thumbUp = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-    console.log('Thumb down working')
-    fetch('messagesdown', {
+Array.from(submit).forEach((submitButton) => { 
+  submitButton.addEventListener('click', function(event){
+    event.preventDefault()
+    
+    fetch('taskupdated', {
       method: 'put',
-      headers: {'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        'name': name,
-        'msg': msg,
-        'thumbUp':thumbUp
+        'task': submitButton.closest('li').querySelector('.item').innerText,
+        'newTask': submitButton.closest('li').querySelector(".editItem").value,
+        
       })
+      
     })
     .then(response => {
-      if (response.ok) return response.json()
+      if (response.ok) return response.json();
     })
     .then(data => {
-      console.log(data)
-      window.location.reload(true)
+      console.log(data);
+      window.location.reload(true); 
+    });
+})})
+
+Array.from(checkBox).forEach((box) => { 
+  box.addEventListener('click', function(event){
+    // event.preventDefault()
+    console.log(box.closest('li').querySelector('.checkBox').checked)
+    fetch('checked', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        'task': box.closest('li').querySelector('.item').innerText,
+        'newTask': box.closest('li').querySelector(".editItem").value,
+        'checked': box.closest('li').querySelector('.checkBox').checked
+      })
+      
     })
-  });
-});
+    .then(response => {
+      if (response.ok) return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      window.location.reload(true); 
+    });
+})})
 
 Array.from(trash).forEach(function(element) {
       element.addEventListener('click', function(){
-        const name = this.parentNode.parentNode.childNodes[1].innerText
-        const msg = this.parentNode.parentNode.childNodes[3].innerText
-        fetch('messages', {
+        console.log('Trash is working!')
+        const task = element.closest('li').querySelector('.item').innerText
+        fetch('todolist', {
           method: 'delete',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'name': name,
-            'msg': msg
+            'task': task
           })
         }).then(function (response) {
           window.location.reload()
