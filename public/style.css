@@ -58,10 +58,38 @@ body{
   justify-content: center;
   align-items: center;
   font-family: "Parkinsans", sans-serif;
+  color: #7851A9
 }
 
+span {
+  color: black;
+}
 
+i {
+  color: #7851A9;
+}
 
+.submit {
+  background-color: #7851A9;
+  color: #E8EBF3;
+  border-style: solid;
+  border-color: #7851A9;
+  border-radius: 5%;
+}
+
+.add-task {
+  border-color: black;
+  border-style: solid;
+  border-radius: 2%;
+  margin-left: 6%;
+}
+
+.login {
+  background-color: #7851A9;
+  color: #E8EBF3;
+  border-style: solid;
+  border-color: #7851A9;
+}
 img{
   height: 200px;
 }
@@ -100,7 +128,7 @@ h2 {
 
 .center {
   background-color: white;
-  width: 50%;  
+  width: 25%;  
   border-radius: 5%;
   padding-top: 30px;
 }
@@ -116,11 +144,15 @@ ul {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
   padding-bottom: 30px;
 }
 
 .btn {
   margin-top: 30px;
+}
+
+.form-control {
+  width: 75%;
 }
