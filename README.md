@@ -19,6 +19,10 @@ A collaborative To-Do List application that allows users to sign up, log in, and
 - **Other Tools**: Connect-Flash for notifications, Fetch API for real-time updates
 
 
+
+https://github.com/user-attachments/assets/c1882966-1e31-445a-ae4e-97cd166ad6e1
+
+
 ## Installation
 
 1. Clone repo
