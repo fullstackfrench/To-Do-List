@@ -1,4 +1,4 @@
-# To-Do List Application
+# PriorityPal
 
 A collaborative To-Do List application that allows users to sign up, log in, and manage their tasks in a clean, user-friendly interface. Users can add, edit, check off, or delete tasks with real-time updates.
 
